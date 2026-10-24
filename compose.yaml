@@ -1,0 +1,19 @@
+services:
+  booster-sim:
+    image: ghcr.io/sluttnu/booster-sim:${TAG:-latest}
+    container_name: booster-sim
+    restart: unless-stopped
+    env_file: .env
+    init: true
+    networks:
+      - proxy
+    volumes:
+      - booster-sim-data:/app/data
+
+volumes:
+  booster-sim-data:
+
+networks:
+  proxy:
+    external: true
+    name: proxy
